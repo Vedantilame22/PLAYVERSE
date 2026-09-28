@@ -1,8 +1,8 @@
+import { Send, Search } from 'lucide-react';
 // ============================================================
 // NEXORA — Messaging Page
 // ============================================================
 import { useState, useRef, useEffect } from 'react';
-import { Send, Search } from 'lucide-react';
 import Avatar from '@/components/common/Avatar';
 import { MESSAGES } from '@/data/index';
 import { PLAYERS, CURRENT_USER } from '@/data/users';

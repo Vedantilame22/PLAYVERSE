@@ -71,7 +71,7 @@ export default function CommunitiesPage() {
   const filtered = COMMUNITIES.filter((c) =>
     !filter || c.name.toLowerCase().includes(filter.toLowerCase()) || c.game.toLowerCase().includes(filter.toLowerCase())
   );
-
+  return (
     <div style={{ width: '100%', margin: '0 auto' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20, flexWrap: 'wrap', gap: 12 }}>
         <div>

@@ -1,9 +1,9 @@
+import { Trophy, Target, Handshake, Gamepad2, Star, Medal, CircleDot, Zap, MessageSquare, Shield, Edit2, Share2, MoreHorizontal, Plus, Check, Link2 } from 'lucide-react';
 // ============================================================
 // NEXORA — Profile Page (Complete)
 // ============================================================
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { Edit2, Share2, MoreHorizontal, Plus, Check, Star, Link2 } from 'lucide-react';
 import Avatar from '@/components/common/Avatar';
 import { VerifiedBadge, RankBadge } from '@/components/common/Badge';
 import Tabs from '@/components/common/Tabs';
@@ -56,7 +56,7 @@ function ProfileHeader({ user, onShowToast }) {
               className={`btn ${connected ? 'btn-ghost' : 'btn-primary'}`}
               onClick={() => { setConnected((v) => !v); onShowToast?.(connected ? 'Connection removed' : 'Connection sent!', 'success'); }}
             >
-              {connected ? <Check size={15} /> : '🤝'}
+              {connected ? <Check size={15} /> : <Handshake size={18} />}
               {connected ? 'Connected' : 'Connect'}
             </button>
             <button
@@ -210,7 +210,7 @@ function GamingExperience({ experience }) {
 
 // ---- Gaming Journey Timeline ----
 function GamingJourney({ journey }) {
-  const icons = { start: '🎮', milestone: '⭐', rank: '🏆', trophy: '🎖️', team: '🛡️', current: '🟢' };
+  const icons = { start: <Gamepad2 size={18} />, milestone: <Star size={18} />, rank: <Trophy size={18} />, trophy: <Medal size={18} />, team: <Shield size={18} />, current: <CircleDot size={18} /> };
   return (
     <div className="nexora-card" style={{ padding: 20 }}>
       <h2 className="section-title" style={{ marginBottom: 20 }}>📅 Gaming Journey</h2>
@@ -390,12 +390,12 @@ function Recommendations({ recommendations }) {
 // ---- Connected Accounts ----
 function ConnectedAccounts({ accounts }) {
   const platforms = [
-    { key: 'riot', label: 'Riot Games', icon: '🎯', color: '#ff4655' },
-    { key: 'steam', label: 'Steam', icon: '🎮', color: '#4f8ef7' },
-    { key: 'playstation', label: 'PlayStation', icon: '🎮', color: '#003087' },
-    { key: 'xbox', label: 'Xbox', icon: '🟢', color: '#107c10' },
-    { key: 'epic', label: 'Epic Games', icon: '⚡', color: '#2d2d2d' },
-    { key: 'discord', label: 'Discord', icon: '💬', color: '#5865f2' },
+    { key: 'riot', label: 'Riot Games', icon: <Target size={18} />, color: '#ff4655' },
+    { key: 'steam', label: 'Steam', icon: <Gamepad2 size={18} />, color: '#4f8ef7' },
+    { key: 'playstation', label: 'PlayStation', icon: <Gamepad2 size={18} />, color: '#003087' },
+    { key: 'xbox', label: 'Xbox', icon: <CircleDot size={18} />, color: '#107c10' },
+    { key: 'epic', label: 'Epic Games', icon: <Zap size={18} />, color: '#2d2d2d' },
+    { key: 'discord', label: 'Discord', icon: <MessageSquare size={18} />, color: '#5865f2' },
   ];
   return (
     <div className="nexora-card" style={{ padding: 20 }}>

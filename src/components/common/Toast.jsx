@@ -1,7 +1,7 @@
+import { CheckCircle, AlertCircle, Info, X } from 'lucide-react';
 // ============================================================
 // NEXORA — Toast Notification Component
 // ============================================================
-import { CheckCircle, AlertCircle, Info, X } from 'lucide-react';
 
 const ICONS = { success: CheckCircle, error: AlertCircle, info: Info };
 const COLORS = { success: 'var(--color-green)', error: 'var(--color-red)', info: 'var(--color-primary)' };

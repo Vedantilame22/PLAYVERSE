@@ -1,3 +1,5 @@
+import { Trophy, Target, Gamepad2, PenSquare, Megaphone, Video } from 'lucide-react';
+import React from 'react';
 // ============================================================
 // NEXORA — Create Post Modal
 // ============================================================
@@ -7,12 +9,12 @@ import Avatar from '@/components/common/Avatar';
 import { CURRENT_USER } from '@/data/users';
 
 const POST_TYPES = [
-  { icon: '🎮', label: 'Share Achievement', value: 'achievement' },
-  { icon: '📹', label: 'Share Clip', value: 'clip' },
-  { icon: '🏆', label: 'Tournament Result', value: 'tournament' },
-  { icon: '📢', label: 'Team Opening', value: 'opening' },
-  { icon: '📝', label: 'Create Post', value: 'post' },
-  { icon: '🎯', label: 'Looking for Team', value: 'lft' },
+  { icon: <Gamepad2 size={18} />, label: 'Share Achievement', value: 'achievement' },
+  { icon: <Video size={18} />, label: 'Share Clip', value: 'clip' },
+  { icon: <Trophy size={18} />, label: 'Tournament Result', value: 'tournament' },
+  { icon: <Megaphone size={18} />, label: 'Team Opening', value: 'opening' },
+  { icon: <PenSquare size={18} />, label: 'Create Post', value: 'post' },
+  { icon: <Target size={18} />, label: 'Looking for Team', value: 'lft' },
 ];
 
 export default function CreatePostModal({ isOpen, onClose, type = 'post', onSubmit }) {

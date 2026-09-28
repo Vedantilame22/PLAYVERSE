@@ -1,9 +1,9 @@
+import { Search, Filter } from 'lucide-react';
 // ============================================================
 // NEXORA — Discover Page
 // ============================================================
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { Search, Filter } from 'lucide-react';
 import Tabs from '@/components/common/Tabs';
 import PlayerCard from '@/components/gaming/PlayerCard';
 import { PLAYERS } from '@/data/users';

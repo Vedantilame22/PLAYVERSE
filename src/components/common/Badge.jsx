@@ -1,3 +1,5 @@
+import { Trophy, PenSquare, Shield } from 'lucide-react';
+import React from 'react';
 // ============================================================
 // NEXORA — Badge Component
 // ============================================================
@@ -14,10 +16,10 @@ export default function Badge({ children, variant = 'primary', className = '', s
 export function VerifiedBadge({ type = 'verified', size = 'sm' }) {
   const configs = {
     verified: { icon: '✓', color: '#4f8ef7', label: 'Verified' },
-    organizer: { icon: '🏆', color: '#f59e0b', label: 'Organizer Verified' },
-    team: { icon: '🛡️', color: '#10b981', label: 'Team Verified' },
+    organizer: { icon: <Trophy size={18} />, color: '#f59e0b', label: 'Organizer Verified' },
+    team: { icon: <Shield size={18} />, color: '#10b981', label: 'Team Verified' },
     platform: { icon: '🔗', color: '#8b5cf6', label: 'Platform Verified' },
-    self: { icon: '📝', color: '#9095b4', label: 'Self Reported' },
+    self: { icon: <PenSquare size={18} />, color: '#9095b4', label: 'Self Reported' },
   };
   const cfg = configs[type] || configs.verified;
   const sz = size === 'sm' ? 16 : 20;

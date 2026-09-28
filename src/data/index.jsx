@@ -1,3 +1,5 @@
+import { Trophy, Target, Swords, Crown, Handshake, Flame, Medal, Award, Crosshair, Zap, Rocket, Wind, Pickaxe, Gamepad2, PartyPopper, Laptop, Star, Eye, ClipboardList, Calendar, User, Heart, Users, Building, Shield } from 'lucide-react';
+import React from 'react';
 // ============================================================
 // NEXORA — Mock Data: All exports (barrel)
 // ============================================================
@@ -18,7 +20,7 @@ export const ACHIEVEMENTS = [
   {
     id: 'a1',
     name: 'Tournament Champion',
-    icon: '🏆',
+    icon: <Trophy size={18} />,
     description: 'Won 1st place in a verified competitive tournament',
     color: '#f59e0b',
     rarity: 'Legendary',
@@ -30,7 +32,7 @@ export const ACHIEVEMENTS = [
   {
     id: 'a2',
     name: 'Immortal Rank',
-    icon: '⚔️',
+    icon: <Swords size={18} />,
     description: 'Reached Immortal rank in Valorant',
     color: '#8b5cf6',
     rarity: 'Epic',
@@ -42,7 +44,7 @@ export const ACHIEVEMENTS = [
   {
     id: 'a3',
     name: 'Conqueror',
-    icon: '👑',
+    icon: <Crown size={18} />,
     description: 'Reached Conqueror rank in BGMI',
     color: '#d946ef',
     rarity: 'Epic',
@@ -54,7 +56,7 @@ export const ACHIEVEMENTS = [
   {
     id: 'a4',
     name: 'Team Player',
-    icon: '🤝',
+    icon: <Handshake size={18} />,
     description: 'Active member of a verified competitive team',
     color: '#10b981',
     rarity: 'Rare',
@@ -66,7 +68,7 @@ export const ACHIEVEMENTS = [
   {
     id: 'a5',
     name: '1000 Hours',
-    icon: '🔥',
+    icon: <Flame size={18} />,
     description: '1000+ hours in a single game',
     color: '#f97316',
     rarity: 'Uncommon',
@@ -78,7 +80,7 @@ export const ACHIEVEMENTS = [
   {
     id: 'a6',
     name: 'IGL Badge',
-    icon: '🎯',
+    icon: <Target size={18} />,
     description: 'Led a team as In-Game Leader in competitive play',
     color: '#4f8ef7',
     rarity: 'Rare',
@@ -90,7 +92,7 @@ export const ACHIEVEMENTS = [
   {
     id: 'a7',
     name: 'Regional Finalist',
-    icon: '🥈',
+    icon: <Medal size={18} />,
     description: 'Reached finals of a regional tournament',
     color: '#94a3b8',
     rarity: 'Epic',
@@ -102,7 +104,7 @@ export const ACHIEVEMENTS = [
   {
     id: 'a8',
     name: 'Community Contributor',
-    icon: '🏅',
+    icon: <Award size={18} />,
     description: 'Active contributor to gaming communities',
     color: '#00d4ff',
     rarity: 'Common',
@@ -135,7 +137,7 @@ export const EVENTS = [
     isRegistered: true,
     tags: ['Valorant', 'Regional', 'LAN'],
     color: '#ff4655',
-    icon: '🎯',
+    icon: <Target size={18} />,
     description: 'The biggest Valorant regional tournament in India. Teams battle for the championship title and prize pool.',
   },
   {
@@ -158,7 +160,7 @@ export const EVENTS = [
     isRegistered: false,
     tags: ['Valorant', 'Scrims', 'Practice'],
     color: '#4f8ef7',
-    icon: '🏆',
+    icon: <Trophy size={18} />,
     description: 'Open scrims hosted by Team Nova. Practice matches for competitive teams.',
   },
   {
@@ -182,7 +184,7 @@ export const EVENTS = [
     isRegistered: false,
     tags: ['BGMI', 'National', 'Online'],
     color: '#f59e0b',
-    icon: '🔫',
+    icon: <Crosshair size={18} />,
     description: 'India\'s premier BGMI national series. Top 128 teams compete for the national title.',
   },
   {
@@ -206,7 +208,7 @@ export const EVENTS = [
     isRegistered: false,
     tags: ['CS2', 'ESL', 'LAN', 'International'],
     color: '#00d4ff',
-    icon: '💥',
+    icon: <Zap size={18} />,
     description: 'ESL Challenger is the entry point for tier-2 CS2 teams competing on the international stage.',
   },
   {
@@ -230,7 +232,7 @@ export const EVENTS = [
     isRegistered: false,
     tags: ['Apex', 'Invitational', 'LAN'],
     color: '#10b981',
-    icon: '🚀',
+    icon: <Rocket size={18} />,
     description: 'EA\'s official India Apex Legends invitational featuring top teams from across the country.',
   },
   {
@@ -254,7 +256,7 @@ export const EVENTS = [
     isRegistered: false,
     tags: ['Fortnite', 'FNCS', 'APAC'],
     color: '#6ee7b7',
-    icon: '🌪️',
+    icon: <Wind size={18} />,
     description: 'APAC regional qualifier for the Fortnite Champion Series global finals.',
   },
   {
@@ -277,7 +279,7 @@ export const EVENTS = [
     isRegistered: false,
     tags: ['Minecraft', 'Build', 'Community'],
     color: '#84cc16',
-    icon: '⛏️',
+    icon: <Pickaxe size={18} />,
     description: 'Community-driven Minecraft building competition. Theme revealed on event day.',
   },
 ];
@@ -294,7 +296,7 @@ export const COMMUNITIES = [
     isJoined: true,
     tags: ['Valorant', 'India', 'Competitive'],
     color: '#ff4655',
-    icon: '🎯',
+    icon: <Target size={18} />,
     adminId: 'u5',
     weeklyActive: 4200,
   },
@@ -309,7 +311,7 @@ export const COMMUNITIES = [
     isJoined: false,
     tags: ['BGMI', 'Competitive', 'Squads'],
     color: '#f59e0b',
-    icon: '🔫',
+    icon: <Crosshair size={18} />,
     adminId: 'u9',
     weeklyActive: 3100,
   },
@@ -324,7 +326,7 @@ export const COMMUNITIES = [
     isJoined: true,
     tags: ['Minecraft', 'Building', 'Creative'],
     color: '#84cc16',
-    icon: '⛏️',
+    icon: <Pickaxe size={18} />,
     adminId: 'u1',
     weeklyActive: 1800,
   },
@@ -339,7 +341,7 @@ export const COMMUNITIES = [
     isJoined: false,
     tags: ['FPS', 'India', 'Competitive'],
     color: '#4f8ef7',
-    icon: '🎮',
+    icon: <Gamepad2 size={18} />,
     adminId: 'u4',
     weeklyActive: 2400,
   },
@@ -354,7 +356,7 @@ export const COMMUNITIES = [
     isJoined: true,
     tags: ['Esports', 'India', 'Professional'],
     color: '#8b5cf6',
-    icon: '🏆',
+    icon: <Trophy size={18} />,
     adminId: 'u6',
     weeklyActive: 8400,
   },
@@ -369,7 +371,7 @@ export const COMMUNITIES = [
     isJoined: false,
     tags: ['Casual', 'Community', 'All Games'],
     color: '#10b981',
-    icon: '🎉',
+    icon: <PartyPopper size={18} />,
     adminId: 'u12',
     weeklyActive: 6200,
   },
@@ -384,7 +386,7 @@ export const COMMUNITIES = [
     isJoined: false,
     tags: ['GameDev', 'Unity', 'Unreal', 'Indie'],
     color: '#f97316',
-    icon: '💻',
+    icon: <Laptop size={18} />,
     adminId: null,
     weeklyActive: 890,
   },
@@ -399,7 +401,7 @@ export const COMMUNITIES = [
     isJoined: false,
     tags: ['CS2', 'India', 'Competitive'],
     color: '#00d4ff',
-    icon: '💥',
+    icon: <Zap size={18} />,
     adminId: 'u4',
     weeklyActive: 1900,
   },
@@ -588,7 +590,7 @@ export const NOTIFICATIONS = [
   {
     id: 'n1',
     type: 'endorsement',
-    icon: '⭐',
+    icon: <Star size={18} />,
     title: 'Rahul Sharma endorsed your Controller skill',
     body: 'Rahul has endorsed you for Controller. You now have 23 endorsements.',
     timestamp: '5 min ago',
@@ -601,7 +603,7 @@ export const NOTIFICATIONS = [
   {
     id: 'n2',
     type: 'profile-view',
-    icon: '👁️',
+    icon: <Eye size={18} />,
     title: 'Team Nova viewed your profile',
     body: 'Your profile was viewed by Team Nova. Stand out!',
     timestamp: '2 hours ago',
@@ -614,7 +616,7 @@ export const NOTIFICATIONS = [
   {
     id: 'n3',
     type: 'connection',
-    icon: '🤝',
+    icon: <Handshake size={18} />,
     title: 'Kairav Joshi accepted your connection request',
     body: 'You are now connected with Kairav Joshi. Start a conversation!',
     timestamp: '4 hours ago',
@@ -627,7 +629,7 @@ export const NOTIFICATIONS = [
   {
     id: 'n4',
     type: 'application',
-    icon: '📋',
+    icon: <ClipboardList size={18} />,
     title: 'Team Nova opening received 3 new applications',
     body: '3 players applied to your Initiator opening. Review them in your team dashboard.',
     timestamp: '6 hours ago',
@@ -640,7 +642,7 @@ export const NOTIFICATIONS = [
   {
     id: 'n5',
     type: 'achievement',
-    icon: '🏆',
+    icon: <Trophy size={18} />,
     title: 'Your Tournament Winner achievement was verified',
     body: 'IndiaEsports has verified your Tournament Champion achievement.',
     timestamp: '1 day ago',
@@ -653,7 +655,7 @@ export const NOTIFICATIONS = [
   {
     id: 'n6',
     type: 'event',
-    icon: '📅',
+    icon: <Calendar size={18} />,
     title: 'Valorant Regional Championship starts in 2 days',
     body: 'VRC 2026 begins Oct 15. Check the schedule and confirm your team roster.',
     timestamp: '1 day ago',
@@ -666,7 +668,7 @@ export const NOTIFICATIONS = [
   {
     id: 'n7',
     type: 'invite',
-    icon: '🎯',
+    icon: <Target size={18} />,
     title: 'You were invited to join Team Phantom',
     body: 'Neo Rathore has sent you a team invitation for Phantom Recon. View the offer.',
     timestamp: '2 days ago',
@@ -679,7 +681,7 @@ export const NOTIFICATIONS = [
   {
     id: 'n8',
     type: 'follow',
-    icon: '👤',
+    icon: <User size={18} />,
     title: 'Priya Nair started following you',
     body: 'Priya Nair, Apex Predator, is now following your profile.',
     timestamp: '3 days ago',
@@ -692,7 +694,7 @@ export const NOTIFICATIONS = [
   {
     id: 'n9',
     type: 'post-like',
-    icon: '❤️',
+    icon: <Heart size={18} />,
     title: 'Arjun Mehta and 40 others liked your post',
     body: 'Your post about Valorant strategy got 41 likes.',
     timestamp: '3 days ago',
@@ -705,7 +707,7 @@ export const NOTIFICATIONS = [
   {
     id: 'n10',
     type: 'community',
-    icon: '👥',
+    icon: <Users size={18} />,
     title: 'Esports India community featured your profile',
     body: 'You were featured as a top contributor in Esports India this week.',
     timestamp: '4 days ago',
@@ -783,14 +785,14 @@ export const MESSAGES = [
 ];
 
 export const GAMES_CATALOG = [
-  { id: 'g1', name: 'Valorant', genre: 'FPS', developer: 'Riot Games', icon: '🎯', color: '#ff4655', playerCount: '26M+', competitiveLevel: 'Pro' },
-  { id: 'g2', name: 'BGMI', genre: 'Battle Royale', developer: 'Krafton', icon: '🔫', color: '#f59e0b', playerCount: '100M+', competitiveLevel: 'Pro' },
-  { id: 'g3', name: 'CS2', genre: 'FPS', developer: 'Valve', icon: '💥', color: '#00d4ff', playerCount: '22M+', competitiveLevel: 'Pro' },
-  { id: 'g4', name: 'Apex Legends', genre: 'Battle Royale', developer: 'EA Respawn', icon: '🚀', color: '#10b981', playerCount: '130M+', competitiveLevel: 'Pro' },
-  { id: 'g5', name: 'Minecraft', genre: 'Sandbox', developer: 'Mojang', icon: '⛏️', color: '#84cc16', playerCount: '140M+', competitiveLevel: 'Community' },
-  { id: 'g6', name: 'League of Legends', genre: 'MOBA', developer: 'Riot Games', icon: '⚔️', color: '#a78bfa', playerCount: '150M+', competitiveLevel: 'Pro' },
-  { id: 'g7', name: 'Fortnite', genre: 'Battle Royale', developer: 'Epic Games', icon: '🌪️', color: '#6ee7b7', playerCount: '350M+', competitiveLevel: 'Semi-Pro' },
-  { id: 'g8', name: 'GTA V', genre: 'Open World', developer: 'Rockstar', icon: '🌆', color: '#f97316', playerCount: '200M+', competitiveLevel: 'Community' },
-  { id: 'g9', name: 'Call of Duty', genre: 'FPS', developer: 'Activision', icon: '🎖️', color: '#94a3b8', playerCount: '200M+', competitiveLevel: 'Pro' },
-  { id: 'g10', name: 'PUBG', genre: 'Battle Royale', developer: 'Krafton', icon: '🪖', color: '#fb923c', playerCount: '75M+', competitiveLevel: 'Pro' },
+  { id: 'g1', name: 'Valorant', genre: 'FPS', developer: 'Riot Games', icon: <Target size={18} />, color: '#ff4655', playerCount: '26M+', competitiveLevel: 'Pro' },
+  { id: 'g2', name: 'BGMI', genre: 'Battle Royale', developer: 'Krafton', icon: <Crosshair size={18} />, color: '#f59e0b', playerCount: '100M+', competitiveLevel: 'Pro' },
+  { id: 'g3', name: 'CS2', genre: 'FPS', developer: 'Valve', icon: <Zap size={18} />, color: '#00d4ff', playerCount: '22M+', competitiveLevel: 'Pro' },
+  { id: 'g4', name: 'Apex Legends', genre: 'Battle Royale', developer: 'EA Respawn', icon: <Rocket size={18} />, color: '#10b981', playerCount: '130M+', competitiveLevel: 'Pro' },
+  { id: 'g5', name: 'Minecraft', genre: 'Sandbox', developer: 'Mojang', icon: <Pickaxe size={18} />, color: '#84cc16', playerCount: '140M+', competitiveLevel: 'Community' },
+  { id: 'g6', name: 'League of Legends', genre: 'MOBA', developer: 'Riot Games', icon: <Swords size={18} />, color: '#a78bfa', playerCount: '150M+', competitiveLevel: 'Pro' },
+  { id: 'g7', name: 'Fortnite', genre: 'Battle Royale', developer: 'Epic Games', icon: <Wind size={18} />, color: '#6ee7b7', playerCount: '350M+', competitiveLevel: 'Semi-Pro' },
+  { id: 'g8', name: 'GTA V', genre: 'Open World', developer: 'Rockstar', icon: <Building size={18} />, color: '#f97316', playerCount: '200M+', competitiveLevel: 'Community' },
+  { id: 'g9', name: 'Call of Duty', genre: 'FPS', developer: 'Activision', icon: <Medal size={18} />, color: '#94a3b8', playerCount: '200M+', competitiveLevel: 'Pro' },
+  { id: 'g10', name: 'PUBG', genre: 'Battle Royale', developer: 'Krafton', icon: <Shield size={18} />, color: '#fb923c', playerCount: '75M+', competitiveLevel: 'Pro' },
 ];

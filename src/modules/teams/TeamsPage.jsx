@@ -1,9 +1,9 @@
+import { Target, ClipboardList, Calendar, Users, Plus, Shield, ChevronRight } from 'lucide-react';
 // ============================================================
 // NEXORA — Teams & Clans Page
 // ============================================================
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { Users, Plus, Shield, ChevronRight } from 'lucide-react';
 import Tabs from '@/components/common/Tabs';
 import Modal from '@/components/common/Modal';
 import Avatar from '@/components/common/Avatar';
@@ -313,10 +313,10 @@ export default function TeamsPage() {
             <h3 className="section-title" style={{ marginBottom: 14 }}>🛡️ Team Nova — Dashboard</h3>
             <div className="grid-4" style={{ gap: 10, marginBottom: 16 }}>
               {[
-                { label: 'Members', value: 5, icon: '👥' },
-                { label: 'Applications', value: 12, icon: '📋' },
-                { label: 'Open Positions', value: 1, icon: '🎯' },
-                { label: 'Upcoming Events', value: 2, icon: '📅' },
+                { label: 'Members', value: 5, icon: <Users size={18} /> },
+                { label: 'Applications', value: 12, icon: <ClipboardList size={18} /> },
+                { label: 'Open Positions', value: 1, icon: <Target size={18} /> },
+                { label: 'Upcoming Events', value: 2, icon: <Calendar size={18} /> },
               ].map(({ label, value, icon }) => (
                 <div key={label} style={{ padding: 14, borderRadius: 8, background: 'var(--color-bg-elevated)', border: '1px solid var(--color-border)', textAlign: 'center' }}>
                   <p style={{ fontSize: 20, marginBottom: 4 }}>{icon}</p>

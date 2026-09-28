@@ -1,10 +1,10 @@
+import { Trophy, Target, Award, Gamepad2, Calendar, Megaphone, Video, CircleDot, PenLine } from 'lucide-react';
 // ============================================================
 // NEXORA — Home Feed Page
 // ============================================================
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { PenLine } from 'lucide-react';
 import Avatar from '@/components/common/Avatar';
 import PostCard from './components/PostCard';
 import CreatePostModal from './components/CreatePostModal';
@@ -16,26 +16,28 @@ import { useModal } from '@/hooks';
 function UpcomingEvents() {
   const navigate = useNavigate();
   return (
-    <div className="nexora-card" style={{ padding: 18 }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-        <h3 className="section-title" style={{ fontSize: 'var(--text-base)' }}>Upcoming Events</h3>
-        <button className="btn btn-ghost btn-sm" onClick={() => navigate('/events')}>See all</button>
+    <div className="nexora-card" style={{ padding: 18, border: '2px solid var(--color-ink)', boxShadow: '4px 4px 0px var(--color-ink)' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, borderBottom: '2px solid var(--color-ink)', paddingBottom: 8 }}>
+        <h3 style={{ fontFamily: 'var(--font-comic)', fontSize: '24px', color: 'var(--color-primary)', margin: 0, letterSpacing: '0.04em' }}>UPCOMING TOURNAMENTS</h3>
+        <button className="btn btn-sm btn-secondary" onClick={() => navigate('/events')} style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '15px', padding: '2px 8px' }}>ALL</button>
       </div>
       {EVENTS.slice(0, 3).map((event) => (
         <div key={event.id} style={{
           display: 'flex', gap: 10, padding: '10px 0',
-          borderBottom: '1px solid var(--color-border)',
+          borderBottom: '2px dashed var(--color-border)',
+          alignItems: 'center'
         }}>
           <div style={{
-            width: 36, height: 36, borderRadius: 8, flexShrink: 0,
-            background: `${event.color}15`, border: `1px solid ${event.color}25`,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16,
+            width: 38, height: 38, flexShrink: 0,
+            background: 'var(--color-bg-elevated)', border: '2px solid var(--color-ink)',
+            boxShadow: '2px 2px 0px var(--color-ink)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18,
           }}>{event.icon}</div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-text-primary)' }} className="truncate">
+            <p style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '18px', color: 'var(--color-text-white)', margin: 0, lineHeight: 1.1 }} className="truncate">
               {event.shortName}
             </p>
-            <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>
+            <p style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '14px', color: 'var(--color-cyan)', margin: 0 }}>
               {event.date} • {event.game}
             </p>
           </div>
@@ -50,27 +52,29 @@ function SuggestedCommunities() {
   const navigate = useNavigate();
   const [joined, setJoined] = useState({});
   return (
-    <div className="nexora-card" style={{ padding: 18 }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-        <h3 className="section-title" style={{ fontSize: 'var(--text-base)' }}>Communities</h3>
-        <button className="btn btn-ghost btn-sm" onClick={() => navigate('/communities')}>See all</button>
+    <div className="nexora-card" style={{ padding: 18, border: '2px solid var(--color-ink)', boxShadow: '4px 4px 0px var(--color-ink)' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, borderBottom: '2px solid var(--color-ink)', paddingBottom: 8 }}>
+        <h3 style={{ fontFamily: 'var(--font-comic)', fontSize: '24px', color: 'var(--color-accent)', margin: 0, letterSpacing: '0.04em' }}>ACTIVE GUILDS</h3>
+        <button className="btn btn-sm btn-secondary" onClick={() => navigate('/communities')} style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '15px', padding: '2px 8px' }}>ALL</button>
       </div>
       {COMMUNITIES.slice(0, 4).map((c) => (
-        <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', borderBottom: '1px solid var(--color-border)' }}>
+        <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', borderBottom: '2px dashed var(--color-border)' }}>
           <div style={{
-            width: 32, height: 32, borderRadius: 8, flexShrink: 0,
-            background: `${c.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14,
+            width: 36, height: 36, flexShrink: 0,
+            background: 'var(--color-bg-elevated)', border: '2px solid var(--color-ink)',
+            boxShadow: '2px 2px 0px var(--color-ink)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16,
           }}>{c.icon}</div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-text-primary)' }} className="truncate">{c.name}</p>
-            <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }}>{formatCount(c.memberCount)} members</p>
+            <p style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '18px', color: 'var(--color-text-white)', margin: 0, lineHeight: 1.1 }} className="truncate">{c.name}</p>
+            <p style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '14px', color: 'var(--color-text-muted)', margin: 0 }}>{formatCount(c.memberCount)} MEMBERS</p>
           </div>
           <button
-            className={`btn btn-sm ${(joined[c.id] || c.isJoined) ? 'btn-ghost' : 'btn-secondary'}`}
+            className={`btn btn-sm ${(joined[c.id] || c.isJoined) ? 'btn-ghost' : 'btn-primary'}`}
             onClick={() => setJoined((p) => ({ ...p, [c.id]: !p[c.id] }))}
-            style={{ fontSize: 11, padding: '4px 10px', flexShrink: 0 }}
+            style={{ fontFamily: 'var(--font-comic-sub)', fontSize: 15, padding: '3px 10px', flexShrink: 0 }}
           >
-            {(joined[c.id] || c.isJoined) ? 'Joined' : '+ Join'}
+            {(joined[c.id] || c.isJoined) ? 'JOINED' : '+ JOIN'}
           </button>
         </div>
       ))}
@@ -78,51 +82,74 @@ function SuggestedCommunities() {
   );
 }
 
-// Left widget: Profile Summary
+// Left widget: Player Hero (Comic Anime Style)
 function ProfileSummary() {
   const navigate = useNavigate();
   const u = CURRENT_USER;
   const rankColor = getRankColor(u.currentRank);
   return (
-    <div className="nexora-card" style={{ overflow: 'hidden', cursor: 'pointer' }} onClick={() => navigate('/profile')}>
-      {/* Cover */}
-      <div style={{ height: 60, background: u.coverGradient }} />
-      <div style={{ padding: '0 16px 16px' }}>
-        {/* Avatar */}
-        <div style={{ marginTop: -24, marginBottom: 8 }}>
-          <Avatar user={u} size="lg" ring online={u.isOnline} />
+    <div className="nexora-card" style={{ overflow: 'hidden', cursor: 'pointer', padding: 0 }} onClick={() => navigate('/profile')}>
+      {/* Anime Header Cover */}
+      <div style={{
+        height: 100,
+        background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-cyan) 100%)',
+        position: 'relative',
+        clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 100%)',
+        overflow: 'hidden'
+      }}>
+        {/* Speed lines effect */}
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+          backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 20px)',
+          opacity: 0.5,
+          transform: 'skewX(-20deg) scale(1.5)'
+        }} />
+        <div style={{ position: 'absolute', bottom: 10, right: 10, fontSize: 40, opacity: 0.2, fontWeight: 900, fontFamily: 'var(--font-comic)', color: 'var(--color-ink)', transform: 'rotate(-5deg)' }}>
+          {u.primaryGame}
         </div>
-        <p style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-base)', color: 'var(--color-text-white)' }}>
+      </div>
+
+      <div style={{ padding: '0 16px 16px', position: 'relative' }}>
+        {/* Avatar with comic thick border */}
+        <div style={{ marginTop: -40, marginBottom: 12, display: 'inline-block', position: 'relative', zIndex: 2 }}>
+          <div style={{ border: '3px solid var(--color-ink)', background: 'var(--color-bg-primary)', display: 'inline-block', boxShadow: '4px 4px 0px var(--color-ink)' }}>
+            <Avatar user={u} size="lg" online={u.isOnline} />
+          </div>
+        </div>
+        
+        <p style={{ fontFamily: 'var(--font-comic)', fontSize: '28px', color: 'var(--color-text-white)', lineHeight: 1, textShadow: '2px 2px 0px var(--color-ink)' }}>
           {u.displayName}
         </p>
-        <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', marginBottom: 8 }}>{u.title}</p>
+        <p style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '20px', color: 'var(--color-primary)', textTransform: 'uppercase', marginBottom: 12 }}>{u.title}</p>
+        
         {u.lookingForTeam && (
           <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            padding: '3px 10px', borderRadius: 'var(--radius-full)',
-            background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.25)',
-            marginBottom: 10,
+            display: 'inline-flex', alignItems: 'center',
+            padding: '4px 12px', background: 'var(--color-green)',
+            border: '2px solid var(--color-ink)', boxShadow: '2px 2px 0px var(--color-ink)',
+            marginBottom: 16, transform: 'rotate(-2deg)'
           }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#10b981', animation: 'dotPulse 2s ease-in-out infinite', display: 'block' }} />
-            <span style={{ fontSize: 10, fontWeight: 600, color: '#10b981', letterSpacing: '0.04em' }}>LOOKING FOR TEAM</span>
+            <span style={{ fontFamily: 'var(--font-comic-sub)', fontSize: 16, fontWeight: 600, color: 'var(--color-ink)' }}>LOOKING FOR TEAM</span>
           </div>
         )}
+        
+        {/* Stats Grid - Comic Style */}
         <div style={{
-          display: 'flex', justifyContent: 'space-between',
-          padding: '10px 0', borderTop: '1px solid var(--color-border)', marginTop: 4,
+          display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8,
+          padding: '12px 0 0', borderTop: '2px dashed var(--color-border-strong)',
         }}>
           {[
-            { label: 'Connections', value: formatCount(u.connections) },
-            { label: 'Followers', value: formatCount(u.followers) },
+            { label: 'CONNS', value: formatCount(u.connections) },
+            { label: 'FOLLOWS', value: formatCount(u.followers) },
           ].map(({ label, value }) => (
             <div key={label} style={{ textAlign: 'center' }}>
-              <p style={{ fontWeight: 700, color: 'var(--color-primary)', fontFamily: 'var(--font-display)', fontSize: 'var(--text-sm)' }}>{value}</p>
-              <p style={{ fontSize: 10, color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>{label}</p>
+              <p style={{ fontFamily: 'var(--font-comic)', fontSize: '22px', color: 'var(--color-text-white)', lineHeight: 1 }}>{value}</p>
+              <p style={{ fontFamily: 'var(--font-comic-sub)', fontSize: 16, color: 'var(--color-text-muted)' }}>{label}</p>
             </div>
           ))}
           <div style={{ textAlign: 'center' }}>
-            <p style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 'var(--text-xs)', color: rankColor }}>{u.currentRank}</p>
-            <p style={{ fontSize: 10, color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Rank</p>
+            <p style={{ fontFamily: 'var(--font-comic)', fontSize: '22px', color: rankColor, lineHeight: 1, textShadow: '1px 1px 0px var(--color-ink)' }}>{u.currentRank}</p>
+            <p style={{ fontFamily: 'var(--font-comic-sub)', fontSize: 16, color: 'var(--color-text-muted)' }}>RANK</p>
           </div>
         </div>
       </div>
@@ -133,35 +160,106 @@ function ProfileSummary() {
 // Feed Composer
 function FeedComposer({ onOpen }) {
   return (
-    <div className="nexora-card" style={{ padding: 16 }}>
-      <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 14 }}>
-        <Avatar user={CURRENT_USER} size="md" online />
-        <button
-          onClick={onOpen}
-          style={{
-            flex: 1, padding: '10px 16px', background: 'var(--color-bg-elevated)',
-            border: '1px solid var(--color-border)', borderRadius: 'var(--radius-full)',
-            color: 'var(--color-text-muted)', fontSize: 'var(--text-sm)', cursor: 'text',
-            textAlign: 'left', transition: 'all var(--transition-fast)',
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-border-accent)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--color-border)'; }}
-        >
-          What are you gaming today, {CURRENT_USER.displayName.split(' ')[0]}?
-        </button>
+    <div style={{ marginBottom: 20 }}>
+      {/* Anime Comic Action Banner */}
+      <div className="nexora-card" style={{ 
+        padding: '24px 28px', 
+        marginBottom: 20, 
+        background: 'linear-gradient(135deg, #1f1144 0%, #0d0b1a 100%)',
+        border: '3px solid var(--color-ink)',
+        boxShadow: '6px 6px 0px var(--color-ink)',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        {/* Halftone dot pattern overlay */}
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+          backgroundImage: 'radial-gradient(var(--color-primary-dim) 1.5px, transparent 1.5px)',
+          backgroundSize: '12px 12px',
+          opacity: 0.35,
+          pointerEvents: 'none'
+        }} />
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'var(--color-accent)', padding: '2px 8px', border: '2px solid var(--color-ink)', boxShadow: '2px 2px 0px var(--color-ink)', marginBottom: 8, transform: 'rotate(-1deg)' }}>
+            <span style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '15px', color: 'var(--color-ink)', fontWeight: 800 }}>PLAYER BROADCAST</span>
+          </div>
+          <h2 style={{ fontFamily: 'var(--font-comic)', fontSize: '32px', color: 'var(--color-primary)', margin: '0 0 6px 0', letterSpacing: '0.04em', textShadow: '2px 2px 0px var(--color-ink)', lineHeight: 1 }}>
+            BROADCAST YOUR PLAY, {CURRENT_USER.displayName.split(' ')[0]}!
+          </h2>
+          <p style={{ color: 'var(--color-text-secondary)', fontSize: '14px', maxWidth: '85%', margin: 0, fontFamily: 'var(--font-comic-sub)', letterSpacing: '0.02em' }}>
+            Unleash your battle highlights, assemble your squad, or call out for high-tier scrims.
+          </p>
+        </div>
       </div>
-      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
-        {[
-          { icon: '🎮', label: 'Achievement' },
-          { icon: '📹', label: 'Clip' },
-          { icon: '🏆', label: 'Tournament' },
-          { icon: '📢', label: 'Team Opening' },
-          { icon: '🎯', label: 'LFT' },
-        ].map(({ icon, label }) => (
-          <button key={label} className="btn btn-ghost btn-sm" onClick={onOpen} style={{ gap: 6, fontSize: 11 }}>
-            {icon} {label}
+
+      <div className="nexora-card" style={{ padding: 18, border: '2px solid var(--color-ink)', boxShadow: '4px 4px 0px var(--color-ink)' }}>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 16 }}>
+          <div style={{ border: '2px solid var(--color-ink)', boxShadow: '2px 2px 0px var(--color-ink)' }}>
+            <Avatar user={CURRENT_USER} size="md" online />
+          </div>
+          <button
+            onClick={onOpen}
+            style={{
+              flex: 1, padding: '12px 18px', background: 'var(--color-bg-elevated)',
+              border: '2px solid var(--color-ink)',
+              color: 'var(--color-text-muted)', fontSize: '18px', cursor: 'pointer',
+              textAlign: 'left', transition: 'all var(--transition-fast)',
+              fontFamily: 'var(--font-comic-sub)', letterSpacing: '0.04em',
+              boxShadow: '3px 3px 0px var(--color-ink)'
+            }}
+            onMouseEnter={(e) => { 
+              e.currentTarget.style.borderColor = 'var(--color-primary)'; 
+              e.currentTarget.style.transform = 'translate(-2px, -2px)';
+              e.currentTarget.style.boxShadow = '5px 5px 0px var(--color-primary)';
+            }}
+            onMouseLeave={(e) => { 
+              e.currentTarget.style.borderColor = 'var(--color-ink)'; 
+              e.currentTarget.style.transform = 'none';
+              e.currentTarget.style.boxShadow = '3px 3px 0px var(--color-ink)';
+            }}
+          >
+            WRITE A NEW DISPATCH OR SHARE A CLIP...
           </button>
-        ))}
+        </div>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', paddingTop: 12, borderTop: '2px dashed var(--color-border-strong)' }}>
+          {[
+            { icon: <Gamepad2 size={16} />, label: 'ACHIEVEMENT', color: 'var(--color-primary)' },
+            { icon: <Video size={16} />, label: 'CLIP', color: 'var(--color-cyan)' },
+            { icon: <Trophy size={16} />, label: 'TOURNAMENT', color: 'var(--color-primary)' },
+            { icon: <Megaphone size={16} />, label: 'TEAM OPENING', color: 'var(--color-magenta)' },
+            { icon: <Target size={16} />, label: 'L F T', color: 'var(--color-green)' },
+          ].map(({ icon, label, color }) => (
+            <button
+              key={label}
+              className="btn btn-sm"
+              onClick={onOpen}
+              style={{
+                background: 'var(--color-bg-card)',
+                border: '2px solid var(--color-ink)',
+                boxShadow: '2px 2px 0px var(--color-ink)',
+                color: 'var(--color-text-white)',
+                padding: '6px 12px',
+                fontFamily: 'var(--font-comic-sub)',
+                fontSize: '16px',
+                letterSpacing: '0.04em',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translate(-1px, -1px)';
+                e.currentTarget.style.boxShadow = '3px 3px 0px var(--color-primary)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'none';
+                e.currentTarget.style.boxShadow = '2px 2px 0px var(--color-ink)';
+              }}
+            >
+              <span style={{ color }}>{icon}</span> 
+              <span>{label}</span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -177,20 +275,24 @@ export default function HomePage() {
       {/* Left Column */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
         <ProfileSummary />
-        <div className="nexora-card" style={{ padding: 16 }}>
-          <h3 className="section-title" style={{ fontSize: 'var(--text-sm)', marginBottom: 12 }}>Quick Links</h3>
+        <div className="nexora-card" style={{ padding: 16, border: '2px solid var(--color-ink)', boxShadow: '4px 4px 0px var(--color-ink)' }}>
+          <h3 style={{ fontFamily: 'var(--font-comic)', fontSize: '22px', color: 'var(--color-primary)', marginBottom: 10, letterSpacing: '0.04em' }}>QUICK DISPATCH</h3>
           {[
-            { icon: '🎯', label: 'My Team Openings', path: '/teams' },
-            { icon: '🟢', label: 'Looking for Team', path: '/opportunities' },
-            { icon: '🏅', label: 'My Achievements', path: '/profile' },
-            { icon: '📅', label: 'Upcoming Events', path: '/events' },
-          ].map(({ icon, label }) => (
-            <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 4px', cursor: 'pointer', borderRadius: 'var(--radius-sm)' }}
-              onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-bg-elevated)'}
-              onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+            { icon: <Target size={18} color="var(--color-primary)" />, label: 'MY SQUAD OPENINGS', path: '/teams' },
+            { icon: <CircleDot size={18} color="var(--color-cyan)" />, label: 'LOOKING FOR TEAM (LFT)', path: '/opportunities' },
+            { icon: <Award size={18} color="var(--color-magenta)" />, label: 'BATTLE ACHIEVEMENTS', path: '/profile' },
+            { icon: <Calendar size={18} color="var(--color-green)" />, label: 'TOURNAMENT SCHEDULE', path: '/events' },
+          ].map(({ icon, label, path }) => (
+            <div key={label} style={{
+              display: 'flex', alignItems: 'center', gap: 10, padding: '10px 8px', cursor: 'pointer',
+              borderBottom: '1px dashed var(--color-border)', transition: 'all 0.15s ease'
+            }}
+              onClick={() => navigate(path)}
+              onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-bg-elevated)'; e.currentTarget.style.transform = 'translateX(4px)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.transform = 'none'; }}
             >
               <span>{icon}</span>
-              <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)' }}>{label}</span>
+              <span style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '17px', color: 'var(--color-text-white)', letterSpacing: '0.03em' }}>{label}</span>
             </div>
           ))}
         </div>
@@ -214,17 +316,23 @@ export default function HomePage() {
         <UpcomingEvents />
         <SuggestedCommunities />
         {/* Trending players */}
-        <div className="nexora-card" style={{ padding: 18 }}>
-          <h3 className="section-title" style={{ fontSize: 'var(--text-base)', marginBottom: 14 }}>Players to Know</h3>
+        <div className="nexora-card" style={{ padding: 18, border: '2px solid var(--color-ink)', boxShadow: '4px 4px 0px var(--color-ink)' }}>
+          <h3 style={{ fontFamily: 'var(--font-comic)', fontSize: '24px', color: 'var(--color-cyan)', margin: '0 0 12px 0', letterSpacing: '0.04em' }}>TOP RIVALS</h3>
           {PLAYERS.slice(0, 4).map((p) => (
-            <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', borderBottom: '1px solid var(--color-border)' }}>
-              <Avatar user={p} size="sm" online={p.isOnline} />
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-text-primary)' }} className="truncate">{p.displayName}</p>
-                <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }} className="truncate">{p.primaryRole} • {p.primaryGame}</p>
+            <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderBottom: '2px dashed var(--color-border)' }}>
+              <div style={{ border: '2px solid var(--color-ink)', boxShadow: '2px 2px 0px var(--color-ink)' }}>
+                <Avatar user={p} size="sm" online={p.isOnline} />
               </div>
-              <button className="btn btn-secondary btn-sm" style={{ fontSize: 11, padding: '4px 10px', flexShrink: 0 }}>
-                Connect
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '18px', color: 'var(--color-text-white)', margin: 0, lineHeight: 1.1 }} className="truncate">{p.displayName}</p>
+                <p style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '14px', color: 'var(--color-primary)', margin: 0 }} className="truncate">{p.primaryRole} • {p.primaryGame}</p>
+              </div>
+              <button
+                className="btn btn-primary btn-sm"
+                onClick={() => showToast?.(`Challenged ${p.displayName}!`, 'info')}
+                style={{ fontFamily: 'var(--font-comic-sub)', fontSize: 15, padding: '3px 10px', flexShrink: 0 }}
+              >
+                CONNECT
               </button>
             </div>
           ))}

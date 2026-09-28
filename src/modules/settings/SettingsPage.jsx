@@ -1,3 +1,5 @@
+import { Target, Gamepad2, CircleDot, Zap, MessageSquare } from 'lucide-react';
+import React from 'react';
 // ============================================================
 // NEXORA — Settings Page
 // ============================================================
@@ -59,12 +61,12 @@ export default function SettingsPage() {
   function saveProfile() { showToast?.('Profile updated successfully!', 'success'); }
 
   const platforms = [
-    { key: 'riot', label: 'Riot Games', icon: '🎯', color: '#ff4655' },
-    { key: 'steam', label: 'Steam', icon: '🎮', color: '#4f8ef7' },
-    { key: 'playstation', label: 'PlayStation', icon: '🎮', color: '#003087' },
-    { key: 'xbox', label: 'Xbox', icon: '🟢', color: '#107c10' },
-    { key: 'epic', label: 'Epic Games', icon: '⚡', color: '#2d2d2d' },
-    { key: 'discord', label: 'Discord', icon: '💬', color: '#5865f2' },
+    { key: 'riot', label: 'Riot Games', icon: <Target size={18} />, color: '#ff4655' },
+    { key: 'steam', label: 'Steam', icon: <Gamepad2 size={18} />, color: '#4f8ef7' },
+    { key: 'playstation', label: 'PlayStation', icon: <Gamepad2 size={18} />, color: '#003087' },
+    { key: 'xbox', label: 'Xbox', icon: <CircleDot size={18} />, color: '#107c10' },
+    { key: 'epic', label: 'Epic Games', icon: <Zap size={18} />, color: '#2d2d2d' },
+    { key: 'discord', label: 'Discord', icon: <MessageSquare size={18} />, color: '#5865f2' },
   ];
 
   return (

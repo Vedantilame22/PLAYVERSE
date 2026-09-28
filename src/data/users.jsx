@@ -1,3 +1,5 @@
+import { Target, Crosshair, Pickaxe } from 'lucide-react';
+import React from 'react';
 // ============================================================
 // NEXORA — Mock Data: Users / Gamer Profiles
 // ============================================================
@@ -41,7 +43,7 @@ export const CURRENT_USER = {
   gamingExperience: [
     {
       game: 'Valorant',
-      icon: '🎯',
+      icon: <Target size={18} />,
       color: '#ff4655',
       startYear: 2021,
       endYear: null,
@@ -56,7 +58,7 @@ export const CURRENT_USER = {
     },
     {
       game: 'BGMI',
-      icon: '🔫',
+      icon: <Crosshair size={18} />,
       color: '#f59e0b',
       startYear: 2019,
       endYear: 2022,
@@ -70,7 +72,7 @@ export const CURRENT_USER = {
     },
     {
       game: 'Minecraft',
-      icon: '⛏️',
+      icon: <Pickaxe size={18} />,
       color: '#10b981',
       startYear: 2016,
       endYear: null,

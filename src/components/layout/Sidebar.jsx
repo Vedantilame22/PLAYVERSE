@@ -1,244 +1,206 @@
-// ============================================================
-// NEXORA — Sidebar Navigation
-// ============================================================
-import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import {
-  Home, User, Users, Gamepad2, Shield, Globe, Compass,
-  Briefcase, Trophy, MessageSquare, Bell, Settings,
-  ChevronLeft, ChevronRight, LogOut
-} from 'lucide-react';
+import { Home, User, Users, Gamepad2, Shield, Globe, Compass, Briefcase, Trophy, MessageSquare, Bell, Settings, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useNavigate, NavLink } from 'react-router-dom';
 import Avatar from '@/components/common/Avatar';
 import { CURRENT_USER } from '@/data/users';
 import { formatCount } from '@/utils';
 
 const NAV_ITEMS = [
-  { path: '/home', icon: Home, label: 'Home' },
-  { path: '/profile', icon: User, label: 'My Profile' },
-  { path: '/network', icon: Users, label: 'My Network' },
-  { path: '/games', icon: Gamepad2, label: 'Games' },
-  { path: '/teams', icon: Shield, label: 'Teams & Clans' },
-  { path: '/communities', icon: Globe, label: 'Communities' },
-  { path: '/discover', icon: Compass, label: 'Discover' },
-  { path: '/opportunities', icon: Briefcase, label: 'Opportunities' },
-  { path: '/events', icon: Trophy, label: 'Events' },
-  { path: '/messages', icon: MessageSquare, label: 'Messages', badge: 3 },
-  { path: '/notifications', icon: Bell, label: 'Notifications', badge: 4 },
+  { path: '/home', icon: Home, label: 'HOME' },
+  { path: '/profile', icon: User, label: 'MY PROFILE' },
+  { path: '/network', icon: Users, label: 'NETWORK' },
+  { path: '/games', icon: Gamepad2, label: 'GAMES' },
+  { path: '/teams', icon: Shield, label: 'SQUADS' },
+  { path: '/communities', icon: Globe, label: 'COMMUNITIES' },
+  { path: '/discover', icon: Compass, label: 'DISCOVER' },
+  { path: '/opportunities', icon: Briefcase, label: 'OPPORTUNITIES' },
+  { path: '/events', icon: Trophy, label: 'EVENTS' },
+  { path: '/messages', icon: MessageSquare, label: 'MESSAGES', badge: 3 },
+  { path: '/notifications', icon: Bell, label: 'ALERTS', badge: 4 },
 ];
 
 export default function Sidebar({ collapsed, onToggle }) {
   const navigate = useNavigate();
 
   return (
-    <>
-      {/* Sidebar */}
-      <aside
+    <aside
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        height: '100vh',
+        width: collapsed ? 'var(--sidebar-collapsed-width)' : 'var(--sidebar-width)',
+        background: 'var(--color-bg-primary)',
+        borderRight: '2px solid var(--color-ink)',
+        boxShadow: '4px 0 0px var(--color-ink)',
+        display: 'flex',
+        flexDirection: 'column',
+        transition: 'width var(--transition-fast)',
+        zIndex: 200,
+        overflowX: 'hidden',
+        overflowY: 'auto',
+      }}
+    >
+      {/* Animated Comic Halftone Overlay inside sidebar */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+        pointerEvents: 'none',
+        backgroundImage: 'radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px)',
+        backgroundSize: '10px 10px',
+        zIndex: -1
+      }} />
+
+      {/* Logo */}
+      <div
         style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          height: '100vh',
-          width: collapsed ? 'var(--sidebar-collapsed-width)' : 'var(--sidebar-width)',
-          background: 'var(--color-bg-card)',
-          borderRight: '2px solid var(--color-border-strong)',
-          boxShadow: '4px 0 20px rgba(0, 0, 0, 0.4)',
+          padding: collapsed ? '18px 0' : '20px',
           display: 'flex',
-          flexDirection: 'column',
-          transition: 'width var(--transition-base)',
-          zIndex: 200,
-          overflowX: 'hidden',
-          overflowY: 'auto',
+          alignItems: 'center',
+          justifyContent: collapsed ? 'center' : 'space-between',
+          borderBottom: '2px solid var(--color-ink)',
+          minHeight: 'var(--topbar-height)',
+          background: 'var(--color-primary)',
         }}
       >
-        {/* Logo */}
-        <div
-          style={{
-            padding: collapsed ? '18px 0' : '18px 20px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: collapsed ? 'center' : 'space-between',
-            borderBottom: '1px solid var(--color-border)',
-            minHeight: 'var(--topbar-height)',
-            gap: 8,
-          }}
-        >
-          {!collapsed && (
-            <div
-              style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}
-              onClick={() => navigate('/home')}
-            >
-              <div style={{
-                width: 32,
-                height: 32,
-                background: 'linear-gradient(135deg, var(--color-primary), var(--color-cyan))',
-                borderRadius: 8,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontFamily: 'var(--font-display)',
-                fontWeight: 900,
-                fontSize: 14,
-                color: 'white',
-                boxShadow: 'var(--shadow-glow-blue)',
-                flexShrink: 0,
-              }}>N</div>
-              <span style={{
-                fontFamily: 'var(--font-display)',
-                fontWeight: 900,
-                fontSize: 'var(--text-xl)',
-                letterSpacing: '-0.02em',
-                background: 'linear-gradient(135deg, var(--color-text-white), var(--color-primary))',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}>NEXORA</span>
-            </div>
-          )}
-          {collapsed && (
-            <div
-              style={{
-                width: 32, height: 32,
-                background: 'linear-gradient(135deg, var(--color-primary), var(--color-cyan))',
-                borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 14, color: 'white',
-                boxShadow: 'var(--shadow-glow-blue)', cursor: 'pointer',
-              }}
-              onClick={() => navigate('/home')}
-            >N</div>
-          )}
-          {!collapsed && (
-            <button className="btn btn-icon btn-ghost" onClick={onToggle} title="Collapse sidebar">
-              <ChevronLeft size={16} />
-            </button>
-          )}
-        </div>
-
-        {/* Navigation */}
-        <nav style={{ flex: 1, padding: '12px 8px', display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {NAV_ITEMS.map(({ path, icon: Icon, label, badge }) => (
-            <NavLink
-              key={path}
-              to={path}
-              title={collapsed ? label : undefined}
-              style={({ isActive }) => ({
-                display: 'flex',
-                alignItems: 'center',
-                gap: collapsed ? 0 : 10,
-                padding: collapsed ? '10px 0' : '10px 12px',
-                justifyContent: collapsed ? 'center' : 'flex-start',
-                borderRadius: 'var(--radius-md)',
-                color: isActive ? 'var(--color-primary)' : 'var(--color-text-secondary)',
-                background: isActive ? 'var(--color-primary-dim)' : 'transparent',
-                border: isActive ? '1px solid var(--color-border-accent)' : '1px solid transparent',
-                fontFamily: 'var(--font-display)',
-                fontSize: 'var(--text-sm)',
-                fontWeight: 600,
-                transition: 'all var(--transition-fast)',
-                textDecoration: 'none',
-                position: 'relative',
-                boxShadow: isActive ? 'var(--shadow-glow-blue)' : 'none',
-              })}
-            >
-              {({ isActive }) => (
-                <>
-                  <Icon size={18} style={{ flexShrink: 0, opacity: isActive ? 1 : 0.7 }} />
-                  {!collapsed && <span style={{ flex: 1 }}>{label}</span>}
-                  {!collapsed && badge && (
-                    <span style={{
-                      background: 'var(--color-primary)',
-                      color: 'white',
-                      borderRadius: 'var(--radius-full)',
-                      fontSize: 10,
-                      fontWeight: 700,
-                      padding: '1px 6px',
-                      minWidth: 18,
-                      textAlign: 'center',
-                    }}>{badge}</span>
-                  )}
-                  {collapsed && badge && (
-                    <span style={{
-                      position: 'absolute', top: 6, right: 6,
-                      width: 8, height: 8,
-                      background: 'var(--color-primary)',
-                      borderRadius: '50%',
-                      border: '2px solid var(--color-bg-secondary)',
-                    }} />
-                  )}
-                </>
-              )}
-            </NavLink>
-          ))}
-        </nav>
-
-        {/* Bottom: Settings + Profile */}
-        <div style={{ padding: '8px', borderTop: '1px solid var(--color-border)', display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <NavLink
-            to="/settings"
-            title={collapsed ? 'Settings' : undefined}
-            style={({ isActive }) => ({
-              display: 'flex', alignItems: 'center', gap: collapsed ? 0 : 10,
-              padding: collapsed ? '10px 0' : '10px 12px',
-              justifyContent: collapsed ? 'center' : 'flex-start',
-              borderRadius: 'var(--radius-md)',
-              color: isActive ? 'var(--color-primary)' : 'var(--color-text-secondary)',
-              background: isActive ? 'var(--color-primary-dim)' : 'transparent',
-              border: '1px solid transparent',
-              fontFamily: 'var(--font-display)', fontSize: 'var(--text-sm)', fontWeight: 600,
-              textDecoration: 'none', transition: 'all var(--transition-fast)',
-            })}
-          >
-            <Settings size={18} style={{ flexShrink: 0, opacity: 0.7 }} />
-            {!collapsed && <span>Settings</span>}
-          </NavLink>
-
-          {/* Profile card */}
+        {!collapsed && (
           <div
-            onClick={() => navigate('/profile')}
-            style={{
-              display: 'flex', alignItems: 'center', gap: collapsed ? 0 : 10,
-              padding: collapsed ? '10px 0' : '10px 12px',
-              justifyContent: collapsed ? 'center' : 'flex-start',
-              borderRadius: 'var(--radius-md)', cursor: 'pointer',
-              border: '1px solid var(--color-border)',
-              background: 'var(--color-bg-elevated)',
-              transition: 'all var(--transition-fast)',
-              marginTop: 4,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'var(--color-border-accent)';
-              e.currentTarget.style.background = 'var(--color-bg-card-hover)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'var(--color-border)';
-              e.currentTarget.style.background = 'var(--color-bg-elevated)';
-            }}
+            style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, transform: 'rotate(-2deg)' }}
+            onClick={() => navigate('/home')}
           >
-            <Avatar user={CURRENT_USER} size="sm" online={CURRENT_USER.isOnline} />
-            {!collapsed && (
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-text-primary)', fontFamily: 'var(--font-display)' }} className="truncate">
-                  {CURRENT_USER.displayName}
-                </p>
-                <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }} className="truncate">
-                  {formatCount(CURRENT_USER.connections)} connections
-                </p>
-              </div>
-            )}
+            <span style={{
+              fontFamily: 'var(--font-comic)',
+              fontSize: '28px',
+              letterSpacing: '0.05em',
+              color: 'var(--color-ink)',
+              textShadow: '2px 2px 0px white'
+            }}>PLAYVERSE</span>
           </div>
-        </div>
-
-        {/* Expand button when collapsed */}
+        )}
         {collapsed && (
-          <button
-            className="btn btn-icon btn-ghost"
-            onClick={onToggle}
-            title="Expand sidebar"
-            style={{ margin: '8px auto', marginBottom: 12 }}
-          >
-            <ChevronRight size={16} />
+          <div
+            style={{
+              fontFamily: 'var(--font-comic)', fontSize: 24, color: 'var(--color-ink)',
+              cursor: 'pointer', textShadow: '2px 2px 0px white', transform: 'rotate(-2deg)'
+            }}
+            onClick={() => navigate('/home')}
+          >P</div>
+        )}
+        {!collapsed && (
+          <button style={{ 
+            background: 'var(--color-ink)', color: 'var(--color-primary)', border: 'none',
+            borderRadius: '0', padding: 4, cursor: 'pointer', boxShadow: '2px 2px 0px rgba(0,0,0,0.5)' 
+          }} onClick={onToggle} title="Collapse">
+            <ChevronLeft size={16} />
           </button>
         )}
-      </aside>
-    </>
+      </div>
+
+      {/* Navigation */}
+      <nav style={{ flex: 1, padding: '16px 12px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {NAV_ITEMS.map(({ path, icon: Icon, label, badge }) => (
+          <NavLink
+            key={path}
+            to={path}
+            title={collapsed ? label : undefined}
+            style={({ isActive }) => ({
+              display: 'flex',
+              alignItems: 'center',
+              gap: collapsed ? 0 : 12,
+              padding: collapsed ? '12px 0' : '10px 16px',
+              justifyContent: collapsed ? 'center' : 'flex-start',
+              color: isActive ? 'var(--color-ink)' : 'var(--color-text-secondary)',
+              background: isActive ? 'var(--color-primary)' : 'transparent',
+              border: isActive ? '2px solid var(--color-ink)' : '2px solid transparent',
+              fontFamily: 'var(--font-comic-sub)',
+              fontSize: '22px',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              transition: 'all 100ms ease',
+              textDecoration: 'none',
+              position: 'relative',
+              boxShadow: isActive ? '4px 4px 0px var(--color-ink)' : 'none',
+              transform: isActive && !collapsed ? 'translateX(4px)' : 'none',
+              clipPath: isActive ? 'polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)' : 'none',
+            })}
+          >
+            {({ isActive }) => (
+              <>
+                <Icon size={20} style={{ flexShrink: 0, opacity: isActive ? 1 : 0.7 }} />
+                {!collapsed && <span style={{ flex: 1 }}>{label}</span>}
+                {!collapsed && badge && (
+                  <span style={{
+                    background: isActive ? 'var(--color-ink)' : 'var(--color-primary)',
+                    color: isActive ? 'var(--color-primary)' : 'var(--color-ink)',
+                    fontSize: 14,
+                    fontWeight: 700,
+                    padding: '2px 8px',
+                    border: '2px solid var(--color-ink)',
+                    boxShadow: '2px 2px 0px rgba(0,0,0,0.5)',
+                    fontFamily: 'var(--font-comic)'
+                  }}>{badge}</span>
+                )}
+                {collapsed && badge && (
+                  <span style={{
+                    position: 'absolute', top: 6, right: 6,
+                    width: 10, height: 10,
+                    background: 'var(--color-red)',
+                    border: '2px solid var(--color-ink)',
+                  }} />
+                )}
+              </>
+            )}
+          </NavLink>
+        ))}
+      </nav>
+
+      {/* Bottom: Profile */}
+      <div style={{ padding: '12px', borderTop: '2px solid var(--color-ink)', background: 'var(--color-bg-secondary)' }}>
+        <div
+          onClick={() => navigate('/profile')}
+          style={{
+            display: 'flex', alignItems: 'center', gap: collapsed ? 0 : 12,
+            padding: collapsed ? '12px 0' : '8px',
+            justifyContent: collapsed ? 'center' : 'flex-start',
+            cursor: 'pointer',
+            border: '2px solid var(--color-ink)',
+            background: 'var(--color-bg-card)',
+            transition: 'all var(--transition-fast)',
+            boxShadow: '4px 4px 0px var(--color-ink)',
+            clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%)',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translate(-2px, -2px)';
+            e.currentTarget.style.boxShadow = '6px 6px 0px var(--color-primary)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'none';
+            e.currentTarget.style.boxShadow = '4px 4px 0px var(--color-ink)';
+          }}
+        >
+          <Avatar user={CURRENT_USER} size="sm" online={CURRENT_USER.isOnline} />
+          {!collapsed && (
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <p style={{ fontSize: '18px', fontWeight: 600, color: 'var(--color-text-white)', fontFamily: 'var(--font-comic-sub)', letterSpacing: '0.05em' }} className="truncate">
+                {CURRENT_USER.displayName}
+              </p>
+              <p style={{ fontSize: '12px', color: 'var(--color-primary)', fontFamily: 'var(--font-display)', fontWeight: 700 }} className="truncate">
+                {CURRENT_USER.rank}
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {collapsed && (
+        <button
+          className="btn btn-icon btn-ghost"
+          onClick={onToggle}
+          title="Expand sidebar"
+          style={{ margin: '8px auto', marginBottom: 12, border: '2px solid var(--color-ink)' }}
+        >
+          <ChevronRight size={16} color="var(--color-text-white)" />
+        </button>
+      )}
+    </aside>
   );
 }

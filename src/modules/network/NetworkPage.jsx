@@ -1,3 +1,4 @@
+import { Users } from 'lucide-react';
 // ============================================================
 // NEXORA — Network Page
 // ============================================================
@@ -8,7 +9,6 @@ import PlayerCard from '@/components/gaming/PlayerCard';
 import { PLAYERS } from '@/data/users';
 import { useToggleSet } from '@/hooks';
 import EmptyState from '@/components/common/EmptyState';
-import { Users } from 'lucide-react';
 
 const TABS = [
   { key: 'suggestions', label: 'People You May Know' },

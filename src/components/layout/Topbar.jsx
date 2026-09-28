@@ -1,9 +1,6 @@
-// ============================================================
-// NEXORA — Top Navigation Bar
-// ============================================================
+import { Home, Trophy, Handshake, Gamepad, User, Users, PenSquare, Megaphone, MessageSquare, Shield, Search, Bell, Plus, X, Gamepad2, Globe } from 'lucide-react';
 import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Search, Bell, MessageSquare, Plus, X, Gamepad2, Users, Shield, Globe } from 'lucide-react';
+import { useNavigate, NavLink } from 'react-router-dom';
 import Avatar from '@/components/common/Avatar';
 import { useOutsideClick } from '@/hooks';
 import { CURRENT_USER } from '@/data/users';
@@ -11,12 +8,12 @@ import { PLAYERS } from '@/data/users';
 import { TEAMS } from '@/data/teams';
 
 const QUICK_CREATE_ITEMS = [
-  { icon: '📝', label: 'Create Post', action: 'post' },
-  { icon: '🎮', label: 'Add Gaming Experience', action: 'experience' },
-  { icon: '🛡️', label: 'Create Team', action: 'team' },
-  { icon: '📢', label: 'Team Opening', action: 'opening' },
-  { icon: '👥', label: 'Create Community', action: 'community' },
-  { icon: '🏆', label: 'Create Event', action: 'event' },
+  { icon: <PenSquare size={20} />, label: 'Create Post', action: 'post' },
+  { icon: <Gamepad2 size={20} />, label: 'Add Gaming Experience', action: 'experience' },
+  { icon: <Shield size={20} />, label: 'Create Team', action: 'team' },
+  { icon: <Megaphone size={20} />, label: 'Team Opening', action: 'opening' },
+  { icon: <Users size={20} />, label: 'Create Community', action: 'community' },
+  { icon: <Trophy size={20} />, label: 'Create Event', action: 'event' },
 ];
 
 export default function Topbar({ sidebarCollapsed, onQuickCreate }) {
@@ -51,42 +48,64 @@ export default function Topbar({ sidebarCollapsed, onQuickCreate }) {
         left: marginLeft,
         right: 0,
         height: 'var(--topbar-height)',
-        background: 'var(--color-bg-card)',
-        borderBottom: '2px solid var(--color-border-strong)',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
+        background: 'var(--color-bg-primary)',
+        borderBottom: '2px solid var(--color-ink)',
+        boxShadow: '0 4px 0px var(--color-ink)',
         display: 'flex',
         alignItems: 'center',
         padding: '0 20px',
-        gap: 12,
+        gap: 16,
         zIndex: 100,
-        transition: 'left var(--transition-base)',
+        transition: 'left var(--transition-fast)',
       }}
     >
+      {/* Animated Comic Halftone Overlay inside header */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+        pointerEvents: 'none',
+        backgroundImage: 'radial-gradient(var(--color-border-strong) 1px, transparent 1px)',
+        backgroundSize: '10px 10px',
+        zIndex: -1
+      }} />
+
       {/* Search */}
       <div ref={searchRef} style={{ flex: 1, maxWidth: 440, position: 'relative' }}>
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
           <Search
-            size={16}
+            size={18}
             style={{
-              position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)',
-              color: 'var(--color-text-muted)', pointerEvents: 'none',
+              position: 'absolute', left: 12,
+              color: 'var(--color-ink)', pointerEvents: 'none',
+              zIndex: 1
             }}
           />
           <input
-            className="input"
-            placeholder="Search players, teams, games, communities…"
+            placeholder="SEARCH PLAYERS, TEAMS, GAMES..."
             value={query}
             onChange={(e) => { setQuery(e.target.value); setShowResults(true); }}
             onFocus={() => setShowResults(true)}
-            style={{ paddingLeft: 36, paddingRight: query ? 36 : 14, height: 38, fontSize: 'var(--text-sm)' }}
+            style={{ 
+              width: '100%',
+              paddingLeft: 40, paddingRight: query ? 36 : 14, height: 42, 
+              fontSize: '20px', fontFamily: 'var(--font-comic-sub)', letterSpacing: '0.05em',
+              background: 'var(--color-bg-elevated)', border: '2px solid var(--color-ink)',
+              color: 'var(--color-text-white)', outline: 'none',
+              boxShadow: '4px 4px 0px var(--color-ink)',
+              transition: 'all 0.1s ease'
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.transform = 'translate(-2px, -2px)'; e.currentTarget.style.boxShadow = '6px 6px 0px var(--color-primary)'; e.currentTarget.style.borderColor = 'var(--color-primary)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '4px 4px 0px var(--color-ink)'; e.currentTarget.style.borderColor = 'var(--color-ink)'; }}
+            onFocus={(e) => { e.currentTarget.style.background = 'var(--color-primary)'; e.currentTarget.style.color = 'var(--color-ink)'; }}
+            onBlur={(e) => { e.currentTarget.style.background = 'var(--color-bg-elevated)'; e.currentTarget.style.color = 'var(--color-text-white)'; }}
             aria-label="Global search"
           />
           {query && (
             <button
               onClick={() => { setQuery(''); setShowResults(false); }}
               style={{
-                position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
-                background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-text-muted)',
+                position: 'absolute', right: 10,
+                background: 'var(--color-ink)', border: 'none', cursor: 'pointer', color: 'var(--color-primary)',
+                padding: 4, display: 'flex', alignItems: 'center', justifyContent: 'center'
               }}
             >
               <X size={14} />
@@ -96,137 +115,118 @@ export default function Topbar({ sidebarCollapsed, onQuickCreate }) {
 
         {/* Search Results Dropdown */}
         {showResults && results.length > 0 && (
-          <div className="dropdown-menu animate-fadeIn" style={{ left: 0, right: 0, maxWidth: '100%' }}>
+          <div style={{
+            position: 'absolute', top: '100%', left: 0, right: 0, marginTop: 8,
+            background: 'var(--color-bg-card)', border: '2px solid var(--color-ink)',
+            boxShadow: '6px 6px 0px var(--color-ink)', zIndex: 10,
+            display: 'flex', flexDirection: 'column'
+          }}>
             {results.map(({ type, data }) => (
-              <button
-                key={`${type}-${data.id}`}
-                className="dropdown-item"
+              <div
+                key={data.id}
                 onClick={() => {
-                  navigate(type === 'player' ? '/discover' : '/teams');
-                  setShowResults(false);
-                  setQuery('');
+                  setShowResults(false); setQuery('');
+                  if (type === 'player') navigate('/profile'); // mock nav
+                  if (type === 'team') navigate('/teams'); // mock nav
                 }}
-                style={{ gap: 10 }}
+                style={{
+                  padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12,
+                  cursor: 'pointer', borderBottom: '2px solid var(--color-ink)',
+                  background: 'var(--color-bg-card)', transition: 'background 0.1s'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-primary-dim)'}
+                onMouseLeave={(e) => e.currentTarget.style.background = 'var(--color-bg-card)'}
               >
-                <div style={{
-                  width: 32, height: 32, borderRadius: 8,
-                  background: `linear-gradient(135deg, ${data.avatarColor || data.logoColor || '#4f8ef7'}dd, ${data.avatarColor || data.logoColor || '#4f8ef7'}55)`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 12, fontWeight: 700, color: 'white', flexShrink: 0,
-                }}>
-                  {type === 'player' ? data.displayName[0] : data.name[0]}
-                </div>
+                {type === 'player' ? (
+                  <Avatar user={data} size="sm" />
+                ) : (
+                  <div style={{ width: 32, height: 32, background: 'var(--color-bg-secondary)', border: '2px solid var(--color-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <Shield size={16} color="var(--color-primary)" />
+                  </div>
+                )}
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <p style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-text-primary)' }} className="truncate">
+                  <p style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '20px', letterSpacing: '0.05em', color: 'var(--color-text-white)' }} className="truncate">
                     {type === 'player' ? data.displayName : data.name}
                   </p>
-                  <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)' }} className="truncate">
-                    {type === 'player' ? `${data.primaryRole} • ${data.primaryGame}` : `${data.game} • ${data.type}`}
+                  <p style={{ fontSize: '12px', color: 'var(--color-primary)', fontFamily: 'var(--font-display)', fontWeight: 700 }} className="truncate">
+                    {type === 'player' ? data.primaryGame : data.game}
                   </p>
                 </div>
-                <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-muted)', flexShrink: 0 }}>
-                  {type === 'player' ? '👤' : '🛡️'}
-                </span>
-              </button>
+              </div>
             ))}
-            <div className="dropdown-separator" />
-            <button
-              className="dropdown-item"
-              onClick={() => { navigate('/discover'); setShowResults(false); }}
-              style={{ color: 'var(--color-primary)', fontSize: 'var(--text-sm)' }}
-            >
-              <Search size={14} />
-              Search all results for "{query}"
+            <button style={{
+              background: 'var(--color-primary)', color: 'var(--color-ink)', border: 'none',
+              padding: '12px', fontFamily: 'var(--font-comic-sub)', fontSize: '18px', cursor: 'pointer'
+            }}>
+              VIEW ALL RESULTS
             </button>
           </div>
         )}
       </div>
 
+      <div style={{ flex: 1 }} />
+
       {/* Actions */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        {/* Quick Create */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
         <div ref={createRef} style={{ position: 'relative' }}>
           <button
-            className="btn btn-primary btn-sm"
-            onClick={() => setShowCreate((v) => !v)}
-            aria-label="Quick create"
-            style={{ gap: 6 }}
+            className="btn btn-primary"
+            onClick={() => setShowCreate(!showCreate)}
+            title="Create"
+            style={{ padding: '8px 12px', fontSize: '22px' }}
           >
-            <Plus size={16} />
-            <span style={{ display: 'block' }}>Create</span>
+            <Plus size={20} strokeWidth={3} />
+            <span style={{ marginLeft: 4 }}>CREATE</span>
           </button>
+          
+          {/* Quick Create Dropdown */}
           {showCreate && (
-            <div className="dropdown-menu animate-fadeIn" style={{ right: 0, minWidth: 220 }}>
-              {QUICK_CREATE_ITEMS.map(({ icon, label, action }) => (
-                <button
-                  key={action}
-                  className="dropdown-item"
-                  onClick={() => { onQuickCreate?.(action); setShowCreate(false); }}
-                >
-                  <span style={{ fontSize: 16 }}>{icon}</span>
-                  {label}
-                </button>
-              ))}
+            <div style={{
+              position: 'absolute', top: '100%', right: 0, marginTop: 12, width: 240,
+              background: 'var(--color-bg-card)', border: '2px solid var(--color-ink)',
+              boxShadow: '6px 6px 0px var(--color-ink)', zIndex: 10,
+              display: 'flex', flexDirection: 'column'
+            }}>
+              <div style={{ padding: '12px', background: 'var(--color-primary)', borderBottom: '2px solid var(--color-ink)' }}>
+                <h3 style={{ fontFamily: 'var(--font-comic-sub)', fontSize: '22px', color: 'var(--color-ink)', margin: 0, lineHeight: 1 }}>WHAT'S YOUR NEXT PLAY?</h3>
+              </div>
+              <div style={{ padding: 0 }}>
+                {QUICK_CREATE_ITEMS.map((item, i) => (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      setShowCreate(false);
+                      if (onQuickCreate) onQuickCreate(item.action);
+                    }}
+                    style={{
+                      width: '100%', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12,
+                      background: 'transparent', border: 'none', borderBottom: i < QUICK_CREATE_ITEMS.length - 1 ? '2px solid var(--color-border)' : 'none',
+                      color: 'var(--color-text-white)', fontFamily: 'var(--font-comic-sub)', fontSize: '20px',
+                      cursor: 'pointer', textAlign: 'left', transition: 'all 0.1s'
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-primary)'; e.currentTarget.style.color = 'var(--color-ink)'; e.currentTarget.style.paddingLeft = '20px'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--color-text-white)'; e.currentTarget.style.paddingLeft = '16px'; }}
+                  >
+                    {item.icon}
+                    {item.label}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
-        </div>
-
-        {/* Messages */}
-        <button
-          className="btn btn-icon btn-ghost"
-          onClick={() => navigate('/messages')}
-          title="Messages"
-          style={{ position: 'relative' }}
-        >
-          <MessageSquare size={18} />
-          <span style={{
-            position: 'absolute', top: 4, right: 4,
-            width: 8, height: 8,
-            background: 'var(--color-primary)',
-            borderRadius: '50%',
-            border: '2px solid var(--color-bg-primary)',
-          }} />
-        </button>
-
-        {/* Notifications */}
-        <button
-          className="btn btn-icon btn-ghost"
-          onClick={() => navigate('/notifications')}
-          title="Notifications"
-          style={{ position: 'relative' }}
-        >
-          <Bell size={18} />
-          <span style={{
-            position: 'absolute', top: 4, right: 4,
-            width: 8, height: 8,
-            background: 'var(--color-primary)',
-            borderRadius: '50%',
-            border: '2px solid var(--color-bg-primary)',
-          }} />
-        </button>
-
-        {/* Profile Avatar */}
-        <div
-          onClick={() => navigate('/profile')}
-          style={{ cursor: 'pointer' }}
-          title="My Profile"
-        >
-          <Avatar user={CURRENT_USER} size="sm" online ring />
         </div>
       </div>
     </header>
   );
 }
 
-/* Mobile Bottom Navigation */
 export function MobileNavigation() {
-  const navigate = useNavigate();
-  const items = [
-    { path: '/home', icon: '🏠', label: 'Home' },
-    { path: '/network', icon: '🤝', label: 'Network' },
-    { path: '/teams', icon: '🛡️', label: 'Teams' },
-    { path: '/messages', icon: '💬', label: 'Messages' },
-    { path: '/profile', icon: '👤', label: 'Profile' },
+  const navItems = [
+    { path: '/home', icon: Home, label: 'HOME' },
+    { path: '/network', icon: Users, label: 'NETWORK' },
+    { path: '/messages', icon: MessageSquare, label: 'CHAT', badge: 3 },
+    { path: '/notifications', icon: Bell, label: 'ALERTS', badge: 4 },
+    { path: '/profile', icon: User, label: 'PROFILE' },
   ];
 
   return (
@@ -236,29 +236,74 @@ export function MobileNavigation() {
         bottom: 0,
         left: 0,
         right: 0,
-        height: 64,
-        background: 'rgba(13, 15, 26, 0.95)',
-        backdropFilter: 'blur(20px)',
-        borderTop: '1px solid var(--color-border)',
+        height: 60,
+        background: 'var(--color-bg-primary)',
+        borderTop: '2px solid var(--color-ink)',
+        boxShadow: '0 -4px 0px var(--color-ink)',
         display: 'flex',
-        zIndex: 300,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        zIndex: 1000,
+        padding: '0 8px',
       }}
     >
-      {items.map(({ path, icon, label }) => (
-        <button
-          key={path}
-          onClick={() => navigate(path)}
-          style={{
-            flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center',
-            justifyContent: 'center', gap: 2, background: 'none', border: 'none', cursor: 'pointer',
-            color: window.location.pathname === path ? 'var(--color-primary)' : 'var(--color-text-muted)',
-            fontSize: 20, fontFamily: 'var(--font-display)', fontSize: 10, fontWeight: 600,
-          }}
-        >
-          <span style={{ fontSize: 20 }}>{icon}</span>
-          <span style={{ fontSize: 10 }}>{label}</span>
-        </button>
-      ))}
+      {navItems.map((item) => {
+        const Icon = item.icon;
+        return (
+          <NavLink
+            key={item.path}
+            to={item.path}
+            style={({ isActive }) => ({
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textDecoration: 'none',
+              position: 'relative',
+              padding: '6px 12px',
+              color: isActive ? 'var(--color-ink)' : 'var(--color-text-muted)',
+              background: isActive ? 'var(--color-primary)' : 'transparent',
+              border: isActive ? '2px solid var(--color-ink)' : '2px solid transparent',
+              boxShadow: isActive ? '2px 2px 0px var(--color-ink)' : 'none',
+              transform: isActive ? 'translateY(-2px)' : 'none',
+              transition: 'all 0.15s ease',
+            })}
+          >
+            <div style={{ position: 'relative' }}>
+              <Icon size={20} />
+              {item.badge ? (
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: -6,
+                    right: -10,
+                    background: 'var(--color-accent)',
+                    color: 'var(--color-ink)',
+                    fontSize: '10px',
+                    fontWeight: 900,
+                    padding: '1px 4px',
+                    border: '1px solid var(--color-ink)',
+                  }}
+                >
+                  {item.badge}
+                </span>
+              ) : null}
+            </div>
+            <span
+              style={{
+                fontFamily: 'var(--font-comic-sub)',
+                fontSize: '12px',
+                letterSpacing: '0.05em',
+                lineHeight: 1,
+                marginTop: 2,
+              }}
+            >
+              {item.label}
+            </span>
+          </NavLink>
+        );
+      })}
     </nav>
   );
 }
+
